@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="PersonalAttribute:jar">
+    <output-path>$PROJECT_DIR$/../../../../mc_test_server/spigot_188/plugins</output-path>
+    <root id="archive" name="PersonalAttribute.jar">
+      <element id="module-output" name="PersonalAttribute" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+    </root>
+  </artifact>
+</component>
