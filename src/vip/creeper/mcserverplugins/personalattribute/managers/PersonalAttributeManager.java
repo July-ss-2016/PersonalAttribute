@@ -1,13 +1,11 @@
 package vip.creeper.mcserverplugins.personalattribute.managers;
 
 import org.bukkit.configuration.file.YamlConfiguration;
-import vip.creeper.mcserverplugins.personalattribute.Attribute;
 import vip.creeper.mcserverplugins.personalattribute.PersonalAttribute;
 import vip.creeper.mcserverplugins.personalattribute.PersonalAttributeType;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 public class PersonalAttributeManager {
     private PersonalAttribute plugin;
@@ -16,21 +14,21 @@ public class PersonalAttributeManager {
         this.plugin = plugin;
     }
 
-    public int getPlayerAttributeLevel(String playerName, PersonalAttributeType type) {
-        return  getPlayerAttributeYml(playerName).getInt("attributes." + type.name(), 0);
+    public double getPlayerAttributeLevel(String playerName, PersonalAttributeType type) {
+        return  getPlayerAttributeYml(playerName).getDouble("attributes." + type.name(), 0);
     }
 
-    public boolean promotePlayerAttributeLevel(String playerName, PersonalAttributeType type, int amount) {
+    public boolean promotePlayerAttributeLevel(String playerName, PersonalAttributeType type, double amount) {
         return setPlayerAttributeLevel(playerName, type, getPlayerAttributeLevel(playerName, type) + amount);
     }
 
-    public boolean reducePlayerAttributeLevel(String playerName, PersonalAttributeType type, int amount) {
-        int temp = getPlayerAttributeLevel(playerName, type) - amount;
+    public boolean reducePlayerAttributeLevel(String playerName, PersonalAttributeType type, double amount) {
+        double temp = getPlayerAttributeLevel(playerName, type) - amount;
 
         return temp >= 0 && setPlayerAttributeLevel(playerName, type, temp);
     }
 
-    public boolean setPlayerAttributeLevel(String playerName, PersonalAttributeType type, int level) {
+    public boolean setPlayerAttributeLevel(String playerName, PersonalAttributeType type, double level) {
         File playerDataFile = getPlayerAttributeFile(playerName);
         YamlConfiguration playerDataYml = YamlConfiguration.loadConfiguration(playerDataFile);
 
